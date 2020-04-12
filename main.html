@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>Corona Virus Tracker</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <canvas id="mychart">
+
+
+        </canvas>
+
+    </div>
+</body>
+
+<script>
+    let mychart = document.getElementById('mychart').getContext('2d')
+    let chart = new Chart(mychart, {
+        type: 'bar',
+        data: {
+            labels: ['USA', 'China', 'Germany', 'Spain', 'Italy', 'China', 'India'],
+            datasets: [{
+                label: 'Cases',
+                data: [1234, 132, 32, 23232, 3232, 2323, 4434]
+            }],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 206, 86, 0.6)',
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(153, 102, 255, 0.6)',
+                'rgba(255, 159, 64, 0.6)',
+                'rgba(255, 99, 132, 0.6)'
+            ],
+
+        },
+        options: {},
+
+    })
+</script>
+
+</html>
