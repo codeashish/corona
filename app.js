@@ -17,8 +17,11 @@ app.listen(port, () => {
 app.get("/results", async function (req, res) {
     var key = req.query.search;
     // console.log(key)
+    const realkey = key.replace(/\s/g, '-')
+    // console.log(realkey)
 
-    var url = "https://api.covid19api.com/country/" + key + "/status/confirmed/live";
+    var url = ("https://api.covid19api.com/country/" + realkey + "/status/confirmed/live");
+
     // console.log(url)
     var cases = []
     console.log(typeof (cases))
@@ -40,7 +43,7 @@ app.get("/results", async function (req, res) {
 
 
 
-    var url2 = "https://api.covid19api.com/live/country/" + key + "/status/confirmed";
+    var url2 = "https://api.covid19api.com/live/country/" + realkey + "/status/confirmed";
     const response2 = await got(url2)
     // console.log(url)
     var data2 = JSON.parse(response2.body)
@@ -48,14 +51,14 @@ app.get("/results", async function (req, res) {
     var active = 0;
     var deaths = 0;
     var recovered = 0
-    console.log(data2)
+    // console.log(data2)
     data2.forEach(element => {
 
         deaths = element.Deaths;
         active = element.Active
         recovered = element.Recovered;
     });
-    console.log(deaths, active, recovered)
+    // console.log(deaths, active, recovered)
 
     res.render('results', {
         cases,
