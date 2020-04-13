@@ -2,6 +2,12 @@
 <html lang="en">
 
 <head>
+    <style>
+        * {
+            background-color: #eee;
+        }
+    </style>
+
     <meta charset="UTF-8">
     <link rel="icon"
         href="https://image.shutterstock.com/image-vector/corona-virus-logotype-coronavirus-logo-600w-1659640600.jpg"
@@ -22,9 +28,13 @@
 </head>
 
 <body>
-    <div class="container">
 
-        <canvas id="mychart">
+    <div class="container">
+        <h3 style="font-family:fantasy  ">
+            <p style="color: darkred;   "> <strong> Total Cases in
+                    {{countryname }} : {{total}}</strong></p>
+        </h3>
+        <canvas id="mychart" class="row">
 
 
         </canvas>
@@ -32,9 +42,9 @@
 
 
     </div>
-
+    <br><br><br>
     <div class="container">
-        <canvas id="piechart" width="500" height="500">
+        <canvas id="piechart" width="500" height="500" class="row md3">
 
         </canvas>
 
@@ -42,8 +52,14 @@
     </div>
 
 </body>
-
 <script>
+    var arr = ({{ taarik }}).toString()
+    console.log(typeof (arr))
+    const arrrr = arr.split(' ')
+    console.log(arrrr)
+</script>
+<script>
+
     let myChart = document.getElementById('mychart').getContext('2d');
     // Global Options
     Chart.defaults.global.defaultFontFamily = 'Lato';
@@ -136,9 +152,23 @@
     options: {
         title: {
             display: true,
-                text: 'List of cases ',
-                
+                text: 'List of Cases ',
+                    fontColor: 'darkred',
+
         },
+
+        legend: {
+            display: true,
+                position: 'right',
+                    labels: {
+                fontColor: '#000'
+            }
+        },
+
+        tooltips: {
+            enabled: true
+        },
+
         responsive: true,
             maintainAspectRatio: false,
         }

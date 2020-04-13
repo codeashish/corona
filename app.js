@@ -16,11 +16,11 @@ app.listen(port, () => {
 
 app.get("/results", async function (req, res) {
     var key = req.query.search;
-    console.log(key)
+    // console.log(key)
     const realkey = key.replace(/\s/g, '-')
     // console.log(realkey)
 
-
+    const countryname = key.toUpperCase()
     var url = ("https://api.covid19api.com/country/" + realkey + "/status/confirmed/live");
 
 
@@ -56,7 +56,7 @@ app.get("/results", async function (req, res) {
 
         // console.log(url)
         var cases = []
-        console.log(typeof (cases))
+        // console.log(typeof (cases))
         var taarik = []
         const response = await got(url)
         var data = JSON.parse(response.body)
@@ -72,9 +72,10 @@ app.get("/results", async function (req, res) {
             taarik.push(sli)
         });
 
-
-
-
+        var len = cases.length
+        // console.log(cases[len-1])
+        const total = cases[len - 1]
+        // console.log(total)
         var url2 = "https://api.covid19api.com/live/country/" + realkey + "/status/confirmed";
         const response2 = await got(url2)
         // console.log(url)
@@ -97,7 +98,10 @@ app.get("/results", async function (req, res) {
             taarik,
             deaths,
             active,
-            recovered
+            recovered,
+            total,
+            countryname
+
         })
 
         // console.log(taarik, cases)
