@@ -128,10 +128,19 @@ app.get('/statewise', async (req, res) => {
             statename.push(element.name)
         });
         //console.log(statename)
+        //console.log(Math.min(...statedata))
+        //console.log(Math.max(...statedata))
+        total = 0
+        statedata.forEach((element) => [
+            total += parseInt(element)
+        ])
+
+
 
         res.render('statesresults.hbs', {
             statedata: statedata,
-            statename: statename
+            statename: statename,
+            total
         })
     });
 
