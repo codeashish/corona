@@ -2,6 +2,7 @@ const got = require('got');
 const express = require('express');
 const app = express();
 const hbs = require('hbs')
+var unirest = require("unirest");
 const port = process.env.PORT || 8080
 app.set("view engine", "ejs");
 app.set("view engine", "hbs");
@@ -106,4 +107,32 @@ app.get("/results", async function (req, res) {
 
         // console.log(taarik, cases)
     }
+})
+
+app.get('/statewise', async (req, res) => {
+    var req = unirest("GET", "https://coronavirus-tracker-india-covid-19.p.rapidapi.com/api/getStatewise");
+    var statedata = [];
+    var statename = [];
+    req.headers({
+        "x-rapidapi-host": "coronavirus-tracker-india-covid-19.p.rapidapi.com",
+        "x-rapidapi-key": "5e150f4d7amsh5f8ead4e664fbe3p1657a5jsnbadee923baac"
+    });
+    var data = {}
+
+    req.end(function (response) {
+        if (response.error) throw new Error(response.error);
+
+        const arr = response.body;
+        arr.forEach(element => {
+            statedata.push(element.cases);
+            statename.push(element.name)
+        });
+        //console.log(statename)
+
+        res.render('statesresults.hbs', {
+            statedata: statedata,
+            statename: statename
+        })
+    });
+
 })

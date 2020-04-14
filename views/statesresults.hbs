@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        * {
+            background-color: #eee;
+        }
+    </style>
+
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <link rel="icon"
+        href="https://image.shutterstock.com/image-vector/corona-virus-logotype-coronavirus-logo-600w-1659640600.jpg"
+        type="image/gif" sizes="16x16">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State data</title>
+</head>
+
+<body>
+
+    <div class='container'>
+        <canvas id="chartjs">
+
+
+        </canvas>
+
+    </div>
+    <br> <br><br>
+    <div class="container">
+        <canvas id="piechart">
+
+
+
+
+
+        </canvas>
+
+    </div>
+
+</body>
+
+
+
+
+
+<script>
+
+
+    let myChart = document.getElementById('chartjs').getContext('2d');
+    // Global Options
+    Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontSize = 18;
+    Chart.defaults.global.defaultFontColor = '#777';
+
+    let massPopChart = new Chart(myChart, {
+        type: 'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+        data: {
+            labels: [
+                'Andhra Pradesh',
+                'Andaman and Nicobar Islands',
+                'Arunachal Pradesh',
+                'Assam',
+                'Bihar',
+                'Chandigarh',
+                'Chhattisgarh',
+                'Delhi',
+                'Goa',
+                'Gujarat',
+                'Haryana',
+                'Himachal Pradesh',
+                'Jammu and Kashmir',
+                'Jharkhand',
+                'Karnataka',
+                'Kerala',
+                'Ladakh',
+                'Madhya Pradesh',
+                'Maharashtra',
+                'Manipur',
+                'Mizoram',
+                'Nagaland',
+                'Odisha',
+                'Puducherry',
+                'Punjab',
+                'Rajasthan',
+                'Tamil Nadu',
+                'Telengana',
+                'Tripura',
+                'Uttarakhand',
+                'Uttar Pradesh',
+                'West Bengal'
+            ]
+
+            ,
+            datasets: [{
+                label: 'Cases',
+                data: [{{ statedata }}],
+            // label: 'Recovered',
+            // data: [
+            //   132232, 23423, 4234, 234234, 23423, 4324
+            // ],
+            //backgroundColor:'green',
+            backgroundColor: [
+                'rgba(255, 255, 18, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 206, 86, 0.6)',
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(153, 102, 255, 0.6)',
+                'rgba(255, 159, 64, 0.6)',
+                'rgba(255, 99, 132, 0.6)'
+            ],
+            borderWidth: 1,
+            borderColor: 'red',
+            hoverBorderWidth: 3,
+            hoverBorderColor: '#000'
+        }]
+    },
+        options: {
+        title: {
+            display: true,
+            text: 'Confirm Cases',
+            fontSize: 25
+        },
+        legend: {
+            display: true,
+            position: 'right',
+            labels: {
+                fontColor: '#000'
+            }
+        },
+        layout: {
+            padding: {
+                left: 50,
+                right: 0,
+                bottom: 0,
+                top: 0
+            }
+        },
+        tooltips: {
+            enabled: true
+        }
+    }
+    });
+
+
+
+    let mychart = document.getElementById('piechart').getContext('2d');
+    // Global Options
+    Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontSize = 18;
+    Chart.defaults.global.defaultFontColor = '#777';
+
+    let masspopChart = new Chart(mychart, {
+        type: 'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+        data: {
+            labels: [
+                'Andhra Pradesh',
+                'Andaman and Nicobar Islands',
+                'Arunachal Pradesh',
+                'Assam',
+                'Bihar',
+                'Chandigarh',
+                'Chhattisgarh',
+                'Delhi',
+                'Goa',
+                'Gujarat',
+                'Haryana',
+                'Himachal Pradesh',
+                'Jammu and Kashmir',
+                'Jharkhand',
+                'Karnataka',
+                'Kerala',
+                'Ladakh',
+                'Madhya Pradesh',
+                'Maharashtra',
+                'Manipur',
+                'Mizoram',
+                'Nagaland',
+                'Odisha',
+                'Puducherry',
+                'Punjab',
+                'Rajasthan',
+                'Tamil Nadu',
+                'Telengana',
+                'Tripura',
+                'Uttarakhand',
+                'Uttar Pradesh',
+                'West Bengal'
+            ]
+
+            ,
+            datasets: [{
+                label: 'Cases',
+                data: [{{ statedata }}],
+            // label: 'Recovered',
+            // data: [
+            //   132232, 23423, 4234, 234234, 23423, 4324
+            // ],
+            //backgroundColor:'green',
+            backgroundColor: [
+                'rgba(255, 255, 18, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 206, 86, 0.6)',
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(153, 102, 255, 0.6)',
+                'rgba(255, 159, 64, 0.6)',
+                'rgba(255, 99, 132, 0.6)'
+            ],
+            borderWidth: 1,
+            borderColor: 'red',
+            hoverBorderWidth: 3,
+            hoverBorderColor: '#000'
+        }]
+    },
+        options: {
+        title: {
+            display: true,
+            text: 'Confirm Cases',
+            fontSize: 25
+        },
+        legend: {
+            display: true,
+            position: 'right',
+            labels: {
+                fontColor: '#000'
+            }
+        },
+        layout: {
+            padding: {
+                left: 50,
+                right: 0,
+                bottom: 0,
+                top: 0
+            }
+        },
+        tooltips: {
+            enabled: true
+        }
+    }
+    });
+
+
+
+
+
+</script>
+
+
+</html>
