@@ -10,6 +10,10 @@ app.get('/', async (req, res) => {
     res.render('search.hbs');
 })
 
+
+require('dotenv').config()
+
+const api = process.env.API_KEY
 app.listen(port, () => {
     console.log('Server is running')
 })
@@ -115,7 +119,7 @@ app.get('/statewise', async (req, res) => {
     var statename = [];
     req.headers({
         "x-rapidapi-host": "coronavirus-tracker-india-covid-19.p.rapidapi.com",
-        "x-rapidapi-key": "5e150f4d7amsh5f8ead4e664fbe3p1657a5jsnbadee923baac"
+        "x-rapidapi-key": api
     });
 
 
