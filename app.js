@@ -117,7 +117,7 @@ app.get('/statewise', async (req, res) => {
         "x-rapidapi-host": "coronavirus-tracker-india-covid-19.p.rapidapi.com",
         "x-rapidapi-key": "5e150f4d7amsh5f8ead4e664fbe3p1657a5jsnbadee923baac"
     });
-    var data = {}
+
 
     req.end(function (response) {
         if (response.error) throw new Error(response.error);
@@ -130,12 +130,19 @@ app.get('/statewise', async (req, res) => {
         //console.log(statename)
         //console.log(Math.min(...statedata))
         //console.log(Math.max(...statedata))
-        total = 0
-        statedata.forEach((element) => [
-            total += parseInt(element)
-        ])
+        var total = 0
+        // console.log(statedata)
+        // statedata.forEach((element) => {
+        //     total += parseInt(element)
+        //     console.log(total)
+        // })
 
+        for (let i = 0;
+            (i < statedata.length - 1); i++) {
+            total += parseInt(statedata[i])
+        }
 
+        console.log(total)
 
         res.render('statesresults.hbs', {
             statedata: statedata,
